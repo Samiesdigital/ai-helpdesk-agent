@@ -1,0 +1,10 @@
+Email Troubleshooting Guide
+
+1. Check your internet connection first.
+2. Confirm you're using the correct email address and password.
+3. Check if your account is locked — try logging in via the web portal.
+4. Clear your email app's cache, or fully close and reopen it.
+5. Check your spam/junk folder if you're expecting an email that hasn't arrived.
+6. Restart your device.
+
+If none of these steps work, please create a ticket so IT can investigate further.

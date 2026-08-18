@@ -1,0 +1,10 @@
+WiFi Troubleshooting Guide
+
+1. Turn WiFi off and back on from your device's settings.
+2. Restart your router: unplug it, wait 30 seconds, plug it back in.
+3. Forget the network on your device, then reconnect and re-enter the password.
+4. Move closer to the router to rule out signal strength issues.
+5. Check if other devices can connect — if none can, the issue is likely the router or your internet provider.
+6. Restart your computer or phone.
+
+If none of these steps work, please create a ticket so IT can investigate further.

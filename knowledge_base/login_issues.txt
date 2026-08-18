@@ -1,0 +1,10 @@
+Login Issues Troubleshooting Guide
+
+1. Double check your username and password for typos (caps lock included).
+2. Try resetting your password if you're unsure it's correct.
+3. Clear your browser's cache and cookies, then try again.
+4. Try a different browser or an incognito/private window.
+5. Confirm your account hasn't been locked after too many failed attempts.
+6. Check if the login service itself is down (ask a coworker if they can log in).
+
+If none of these steps work, please create a ticket so IT can investigate further.

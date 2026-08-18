@@ -1,0 +1,11 @@
+Printer Troubleshooting Guide
+
+1. Make sure the printer is powered on and connected (USB or WiFi).
+2. Check for paper jams — open the printer and remove any stuck paper.
+3. Confirm there's paper and ink/toner in the printer.
+4. Restart the printer: turn it off, wait 10 seconds, turn it back on.
+5. Restart your computer.
+6. Try printing a test page from your device's printer settings.
+7. Reinstall or update the printer driver if the above steps don't help.
+
+If none of these steps work, please create a ticket so IT can investigate further.

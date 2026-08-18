@@ -1,0 +1,11 @@
+VPN Troubleshooting Guide
+
+1. Check your internet connection is working without the VPN first.
+2. Make sure you're using the correct VPN username and password.
+3. Try disconnecting and reconnecting the VPN.
+4. Restart the VPN client app.
+5. Restart your computer.
+6. Check if the VPN server status page shows any outages.
+7. Try switching to a different VPN server location if your app allows it.
+
+If none of these steps work, please create a ticket so IT can investigate further.

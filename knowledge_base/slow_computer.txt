@@ -1,0 +1,10 @@
+Slow Computer Troubleshooting Guide
+
+1. Restart your computer — this clears out temporary slowdowns.
+2. Close unused programs and browser tabs.
+3. Check for pending software updates and install them.
+4. Run a malware/antivirus scan.
+5. Check available storage space — free up space if your drive is nearly full.
+6. Check Task Manager (Ctrl+Shift+Esc) for any program using unusually high CPU or memory.
+
+If none of these steps work, please create a ticket so IT can investigate further.
