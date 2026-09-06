@@ -45,7 +45,19 @@ def save_assets(assets):
         json.dump(assets, f, indent=2)
 
 
-def create_ticket(issue, category="General", priority="Medium"):
+def find_asset_by_name(name, assets):
+    if not name:
+        return None
+    name = name.strip().lower()
+    matches = [a for a in assets if a["assigned_to"].strip().lower() == name]
+    if matches:
+        return matches[0]
+    # fallback: partial match, in case they type a first name only
+    partial = [a for a in assets if name in a["assigned_to"].strip().lower()]
+    return partial[0] if partial else None
+
+
+def create_ticket(issue, category="General", priority="Medium", asset=None):
     os.makedirs("tickets", exist_ok=True)
     tickets = []
     if os.path.exists(TICKETS_FILE):
@@ -60,6 +72,9 @@ def create_ticket(issue, category="General", priority="Medium"):
         "status": "Open",
         "created": datetime.now().strftime("%Y-%m-%d %H:%M"),
     }
+    if asset:
+        ticket["asset_id"] = asset["asset_id"]
+        ticket["asset_model"] = asset["brand_model"]
     tickets.append(ticket)
     with open(TICKETS_FILE, "w") as f:
         json.dump(tickets, f, indent=2)
@@ -77,24 +92,40 @@ with tab1:
     st.write("👋 Hi! I'm your IT Support Assistant. Describe your issue below.")
 
     kb = load_knowledge_base()
+    assets_for_lookup = load_assets()
+
+    employee_name = st.text_input("Your name (so I can check your assigned device)")
     user_input = st.text_input("What issue are you having?")
+
+    matched_asset = None
+    if employee_name:
+        matched_asset = find_asset_by_name(employee_name, assets_for_lookup)
+        if matched_asset:
+            st.info(
+                f"💻 Found your device: **{matched_asset['brand_model']}** "
+                f"({matched_asset['asset_id']}, {matched_asset['type']})"
+            )
+        else:
+            st.caption("No matching device found in the asset tracker — you can still describe your issue below.")
 
     if user_input:
         topic, content = search_knowledge_base(user_input, kb)
         if content:
             st.subheader(f"📋 Troubleshooting: {topic.title()}")
+            if matched_asset:
+                st.write(f"Steps below are for your **{matched_asset['brand_model']}**:")
             st.text(content)
 
             resolved = st.radio("Did this solve your problem?", ["Select an option", "Yes", "No"])
             if resolved == "No":
-                ticket = create_ticket(user_input, category=topic.title())
+                ticket = create_ticket(user_input, category=topic.title(), asset=matched_asset)
                 st.error(f"🎫 Ticket #{ticket['id']} created and assigned to IT Support.")
                 st.json(ticket)
             elif resolved == "Yes":
                 st.success("Glad that helped! 🎉")
         else:
             st.warning("I couldn't find a matching article. Creating a ticket for you.")
-            ticket = create_ticket(user_input, category="Unclassified")
+            ticket = create_ticket(user_input, category="Unclassified", asset=matched_asset)
             st.error(f"🎫 Ticket #{ticket['id']} created and assigned to IT Support.")
             st.json(ticket)
 
@@ -183,4 +214,3 @@ with tab2:
                     save_assets(assets)
                     st.success(f"Added asset {asset_id}!")
                     st.rerun()
-
